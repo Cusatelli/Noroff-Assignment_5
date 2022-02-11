@@ -6,6 +6,11 @@ public class Main {
     private boolean isRunning = true;
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        StateManager stateManager = StateManager.getInstance();
+        Controller controller = Controller.getInstance();
+
+        stateManager.handleState(controller, State.Initialize);
+        stateManager.handleState(controller, State.Start);
+        stateManager.handleState(controller, State.Update);
     }
 }
