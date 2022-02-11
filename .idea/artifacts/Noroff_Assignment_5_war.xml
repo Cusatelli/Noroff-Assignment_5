@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Noroff-Assignment_5:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Noroff-Assignment_5</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Noroff-Assignment_5-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Noroff-Assignment_5:war exploded" />
+    </root>
+  </artifact>
+</component>
