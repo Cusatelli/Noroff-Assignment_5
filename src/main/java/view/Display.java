@@ -1,6 +1,7 @@
 package view;
 
-import model.Options;
+import model.character.Role;
+import model.State;
 
 public class Display {
     private static Display instance = null;
@@ -14,22 +15,12 @@ public class Display {
         return instance;
     }
 
-    // TODO: Just use clear...
-    public static void loading() {
-        clear(25);
-    }
-
-    private static void clear(int rowsToClear) {
-        String clear = "\n".repeat(rowsToClear);
-        System.out.println(clear);
-    }
-
     public static void welcome() {
         System.out.println("Welcome to RPG Character Creator");
     }
 
-    public static void options(Options options) {
-        switch (options) {
+    public static void options(State.Input state) {
+        switch (state) {
             case Menu -> menu();
             case CreateCharacter -> createCharacter();
             case Start -> start();
@@ -76,5 +67,25 @@ public class Display {
 
     private static void exit() {
         System.out.println("Thank you for playing Morkenorks inevitable failure!");
+    }
+
+    public static void pressAnyKeyToContinue() {
+        System.out.println("Press ANY key to continue!");
+    }
+
+    public static void userSelectMage() {
+        System.out.println("You have selected the Wise Mage!");
+    }
+
+    public static void userSelectRole(Role role) {
+        StringBuilder stringBuilder = new StringBuilder("You have selected the ");
+        switch (role) {
+            case Mage -> stringBuilder.append("Wise");
+            case Rogue -> stringBuilder.append("Sneaky");
+            case Ranger -> stringBuilder.append("Sly");
+            case Warrior -> stringBuilder.append("Mighty");
+        }
+        stringBuilder.append(" ").append(role).append("!"); // -> (" " + role + "!");
+        System.out.println(stringBuilder);
     }
 }
