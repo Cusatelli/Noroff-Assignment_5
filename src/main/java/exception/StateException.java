@@ -1,6 +1,5 @@
 package exception;
 
-import model.Options;
 import model.State;
 
 public class StateException extends Exception {
@@ -8,10 +7,11 @@ public class StateException extends Exception {
         super(message);
     }
 
-    public StateException(State state, Class<?> c) {
-        super("Could not resolve State -> " + state + " in, " + c.getName());
+    public StateException(State.Controller state, Class<?> c) {
+        super("Could not resolve State(Controller) -> " + state + " in, " + c.getName());
     }
-    public StateException(Options state, Class<?> c) {
-        super("Could not resolve State(Option) -> " + state + " in, " + c.getName());
+
+    public StateException(State.Input state, Class<?> c) {
+        super("Could not resolve State(Input) -> " + state + " in, " + c.getName());
     }
 }
