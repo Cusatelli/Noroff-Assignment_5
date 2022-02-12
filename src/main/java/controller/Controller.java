@@ -1,13 +1,10 @@
 package controller;
 
-import model.Options;
 import model.State;
 import view.Display;
 
 public class Controller {
     private static Controller instance = null;
-    private State state = State.Error;
-    private Options optionState = Options.Menu;
     private Renderer renderer;
     private InputHandler inputHandler;
 
@@ -23,45 +20,48 @@ public class Controller {
         this.inputHandler = InputHandler.getInstance();
 
         // When done... move on
-        this.state = State.Start;
+        State.setControllerState(State.Controller.Start);
     }
 
     public void start() {
-        this.state = State.Update;
+        Display.welcome();
+        Display.options(State.Input.Menu);
+        State.setControllerState(State.Controller.Update);
     }
 
     void update() {
         long lastTime = System.nanoTime();
         double updatesPerSecond = 10.0;
-        double nanoSeconds = 1000000000 / updatesPerSecond;
+        double timeInNanoSeconds = 1000000000 / updatesPerSecond;
         double delta = 0;
         long timer = System.currentTimeMillis();
-        int frameCounter = 0;
-        while (this.state.equals(State.Update)) {
-            long now = System.nanoTime();
-            delta += (now - lastTime) / nanoSeconds;
-            lastTime = now;
-            while (delta >= 1) {
+        while (State.getControllerState().equals(State.Controller.Update)) {
+            long currentTime = System.nanoTime();
+
+            delta += (currentTime - lastTime) / timeInNanoSeconds;
+            lastTime = currentTime;
+
+            while (delta >= 1) { // Delta Update Loop
                 renderer.update();
                 delta--;
             }
-            if(this.state.equals(State.Update)) {
-                inputHandler.interpreter(optionState);
-                renderer.render();
-            }
-            frameCounter++;
 
-            if(System.currentTimeMillis() - timer > 1000) {
+            if(State.getControllerState().equals(State.Controller.Update)) { // Continue of still running
+                String input = this.inputHandler.listen();
+                this.inputHandler.interpreter(input);
+                this.renderer.render();
+            }
+
+            if(System.currentTimeMillis() - timer > 1000) { // Update Time
                 timer += 1000;
-                Display.loading();
-                frameCounter = 0;
             }
         }
-        exit();
+        exit(); // When Loop has finished, Exit
     }
 
     public void exit() {
-        this.state = State.Terminate;
+        State.setInputState(State.Input.Terminate);
+        State.setControllerState(State.Controller.Terminate);
     }
 
     public void terminate() {
