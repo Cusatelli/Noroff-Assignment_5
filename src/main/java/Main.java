@@ -7,8 +7,8 @@ public class Main {
         StateManager stateManager = StateManager.getInstance();
         Controller controller = Controller.getInstance();
 
-        stateManager.handleState(controller, State.Initialize);
-        stateManager.handleState(controller, State.Start);
-        stateManager.handleState(controller, State.Update);
+        stateManager.handleState(controller, State.Controller.Initialize);
+        stateManager.handleState(controller, State.Controller.Start);
+        stateManager.handleState(controller, State.Controller.Update);
     }
 }
