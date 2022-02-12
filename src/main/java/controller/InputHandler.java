@@ -1,7 +1,8 @@
 package controller;
 
-import exception.StateException;
-import model.Options;
+import model.character.Character;
+import model.character.Role;
+import model.State;
 import view.Display;
 
 import java.util.Scanner;
@@ -24,40 +25,65 @@ public class InputHandler {
         return this.scanner.nextLine();
     }
 
-    public void interpreter(Options options) {
-        switch (options) {
-            case Menu -> {
-                Display.options(options);
-                int input = Integer.parseInt(this.listen());
-                while (input < 4 && input > 0) {
-                    switch (input) {
-                        case 1 -> {
-                            System.out.println("You have selected Start!");
-                            return;
-                        }
-                        case 2 -> {
-                            System.out.println("You have selected Create Character!");
-                            return;
-                        }
-                        case 3 -> {
-                            System.out.println("You have selected Exit!");
-                            return;
-                        }
-                        default -> {
-                            input = Integer.parseInt(this.listen()); // Try again
-                        }
-                    }
-                }
+    public void interpreter(String input) {
+        switch (State.getInputState()) {
+            case Menu ->  {
+                int parsedInput = Integer.parseInt(input);
+                // Handle input
+                this.handleMenuInput(parsedInput);
             }
-            case CreateCharacter -> {}
-            case Start -> {}
-            case Combat -> {}
-            case Interact -> {}
-            case Exit -> {}
-            default -> {
-                try { throw new StateException(options, getClass()); }
-                catch (StateException e) { e.printStackTrace(); }
+            case CreateCharacter -> {
+                int parsedInput = Integer.parseInt(input);
+                // Handle input
+                this.handleCreateCharacterInput(parsedInput);
+                State.setInputState(State.Input.Start); // Update state to proceed.
+            }
+            case Start -> {
+                System.out.println("YOUR ADVENTURE BEGINS!");
+                System.out.println(Player.getInstance().toString());
+            }
+            case Exit -> {
+                System.exit(1);
             }
         }
+    }
+
+    private void handleMenuInput(int parsedInput) {
+        switch (parsedInput) {
+            case 1 -> {
+                Display.options(State.Input.Start);
+            }
+            case 2 -> {
+                State.setInputState(State.Input.CreateCharacter);
+                Display.options(State.Input.CreateCharacter);
+            }
+            case 3 -> {
+                State.setControllerState(State.Controller.Exit);
+                Display.options(State.Input.Exit);
+            }
+            default -> Display.options(State.Input.Menu);
+        }
+    }
+
+    private void handleCreateCharacterInput(int parsedInput) {
+        Character player = Player.getInstance();
+        switch (parsedInput) {
+            case 1 -> {
+                player.initialize(Role.Mage);
+                player.setRole(Role.Mage);
+            }
+            case 2 -> {
+                player.setRole(Role.Rogue);
+            }
+            case 3 -> {
+                player.setRole(Role.Ranger);
+            }
+            case 4 -> {
+                player.setRole(Role.Warrior);
+            }
+            default -> Display.options(State.Input.CreateCharacter);
+        }
+        Display.userSelectRole(player.getRole());
+        Display.pressAnyKeyToContinue();
     }
 }
