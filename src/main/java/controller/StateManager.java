@@ -13,12 +13,10 @@ public class StateManager {
         return instance;
     }
 
-    public void handleState(Controller controller, State state) {
+    public void handleState(Controller controller, State.Controller state) {
         switch (state) {
             case Initialize -> { controller.initialize(); }
-            case Start -> {
-                controller.start();
-            }
+            case Start -> { controller.start(); }
             case Update -> { controller.update(); }
             case Exit -> { controller.exit(); }
             case Terminate -> { controller.terminate(); }
