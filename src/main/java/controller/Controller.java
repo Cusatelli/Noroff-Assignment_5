@@ -7,6 +7,7 @@ public class Controller {
     private static Controller instance = null;
     private Renderer renderer;
     private InputHandler inputHandler;
+    private Player player = null;
 
     private Controller() {}
 
@@ -18,6 +19,7 @@ public class Controller {
     public void initialize() {
         this.renderer = Renderer.getInstance();
         this.inputHandler = InputHandler.getInstance();
+        if(player == null) { this.player = Player.getInstance(); }
 
         // When done... move on
         State.setControllerState(State.Controller.Start);
@@ -49,6 +51,7 @@ public class Controller {
             if(State.getControllerState().equals(State.Controller.Update)) { // Continue of still running
                 int input = this.inputHandler.listen();
                 this.inputHandler.interpreter(input);
+
                 this.renderer.render();
             }
 
