@@ -20,22 +20,39 @@ public class InputHandler {
         return instance;
     }
 
-    public String listen() {
+    public int listen() {
         this.scanner = new Scanner(System.in);
-        return this.scanner.nextLine();
+        String input = this.scanner.nextLine();
+        return parseInteger(input);
     }
 
-    public void interpreter(String input) {
+    private int parseInteger(String input) {
+        try {
+            String trimmed = input.trim();
+            if(trimmed.equals("S") || trimmed.equals("E")) {
+                return -1;
+            }
+            int number = Integer.parseInt((trimmed));
+            if(number < 0 || number > 10) {
+                return -1;
+            }
+
+            return number;
+        } catch (NumberFormatException notANumberError) {
+            Display.invalidUserInput(input);
+            return -1;
+        }
+    }
+
+    public void interpreter(int input) {
         switch (State.getInputState()) {
             case Menu ->  {
-                int parsedInput = Integer.parseInt(input);
                 // Handle input
-                this.handleMenuInput(parsedInput);
+                this.handleMenuInput(input);
             }
             case CreateCharacter -> {
-                int parsedInput = Integer.parseInt(input);
                 // Handle input
-                this.handleCreateCharacterInput(parsedInput);
+                this.handleCreateCharacterInput(input);
                 State.setInputState(State.Input.Start); // Update state to proceed.
             }
             case Start -> {
