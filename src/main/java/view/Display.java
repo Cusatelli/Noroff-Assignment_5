@@ -5,6 +5,23 @@ import model.State;
 
 public class Display {
     private static Display instance = null;
+    public static final String COLOR_RESET = "\u001B[0m";
+    public static final String COLOR_BLACK = "\u001B[30m";
+    public static final String COLOR_RED = "\u001B[31m";
+    public static final String COLOR_GREEN = "\u001B[32m";
+    public static final String COLOR_YELLOW = "\u001B[33m";
+    public static final String COLOR_BLUE = "\u001B[34m";
+    public static final String COLOR_PURPLE = "\u001B[35m";
+    public static final String COLOR_CYAN = "\u001B[36m";
+    public static final String COLOR_WHITE = "\u001B[37m";
+    public static final String BACKGROUND_COLOR_BLACK = "\u001B[40m";
+    public static final String BACKGROUND_COLOR_RED = "\u001B[41m";
+    public static final String BACKGROUND_COLOR_GREEN = "\u001B[42m";
+    public static final String BACKGROUND_COLOR_YELLOW = "\u001B[43m";
+    public static final String BACKGROUND_COLOR_BLUE = "\u001B[44m";
+    public static final String BACKGROUND_COLOR_PURPLE = "\u001B[45m";
+    public static final String BACKGROUND_COLOR_CYAN = "\u001B[46m";
+    public static final String BACKGROUND_COLOR_WHITE = "\u001B[47m";
 
     private Display() {}
 
@@ -31,20 +48,20 @@ public class Display {
     }
 
     private static void menu() {
-        System.out.println("Press a number between 1 & 3, and press Enter to confirm." +
-                "\n1. Start" +
-                "\n2. Create Character" +
-                "\n3. Exit"
+        System.out.println("Press a number between " + number(0) + " - " + number(2) + ", and press " + button("Enter") +  " to confirm." +
+                "\n" + number(1) + ". Start as Deprived" +
+                "\n" + number(2) + ". Create new Character" +
+                "\n" + number(0) + ". " + customColor(COLOR_RED, "Exit")
         );
     }
 
     private static void createCharacter() {
-        System.out.println("Press a number between 1 & 4, and press Enter to confirm." +
+        System.out.println("Press a number between " + number(1) + " - " + number(4) + ", and press " + button("Enter") + " to confirm." +
                 "\nChoose a role for your adventurer:" +
-                "\n1. Mage" +
-                "\n2. Rogue" +
-                "\n3. Ranger" +
-                "\n4. Warrior"
+                "\n" + number(1) + ". Mage" +
+                "\n" + number(2) + ". Rogue" +
+                "\n" + number(3) + ". Ranger" +
+                "\n" + number(4) + ". Warrior"
         );
     }
 
@@ -60,17 +77,18 @@ public class Display {
 
     private static void interact() {
         System.out.println("Hello there, Player.getName()!" +
-                "\nWe need your help to collect 12 Apples before Morkenork destroys our village!" +
+                "\nWe need your help to collect " + number(12) +" Apples before Morkenork destroys our village!" +
                 "\nPlease adventurer, what say you?"
         );
     }
 
     private static void exit() {
-        System.out.println("Thank you for playing Morkenorks inevitable failure!");
+        System.out.println("Thank you for playing Morkenorks inevitable downfall!");
     }
 
     public static void pressAnyKeyToContinue() {
-        System.out.println("Press ANY key to continue!");
+        System.out.println(number(1) + ". Continue" +
+                "\n" + number(0) + ". " + customColor(COLOR_RED, "Exit"));
     }
 
     public static void userSelectMage() {
@@ -90,8 +108,20 @@ public class Display {
     }
 
     public static void invalidUserInput(String input) {
-        System.out.println("\nOops! '" + input + "' is not a valid input!" +
+        /*System.out.println("\nOops! '" + input + "' is not a valid input!" +
                 "\nPlease try an integer! \uD83D\uDE0A\n"
-        );
+        );*/
+    }
+
+    private static String number(int number) {
+        return COLOR_YELLOW + number + COLOR_RESET;
+    }
+
+    private static String button(String buttonText) {
+        return BACKGROUND_COLOR_BLUE + COLOR_BLACK + " " + buttonText + " " + COLOR_RESET;
+    }
+
+    private static String customColor(String color, String message) {
+        return color + message + COLOR_RESET;
     }
 }
