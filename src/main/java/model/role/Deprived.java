@@ -12,8 +12,8 @@ public class Deprived {
         return new Stats(
                 1,
                 100,
-                new Attributes(1, 1, 1, 0),
-                new Attributes(1, 1, 1, 0), // Initialize to same as base.
+                new Attributes(2, 2, 1, 0),
+                new Attributes(2, 2, 1, 0), // Initialize to same as base.
                 new Equipment.Armor[]{ Equipment.Armor.Nude },
                 new Equipment.Weapon[]{ Equipment.Weapon.Knuckles }
         );
