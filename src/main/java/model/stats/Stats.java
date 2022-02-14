@@ -1,16 +1,22 @@
 package model.stats;
 
+import model.equipment.Equipment;
+
 public class Stats {
     private int level = 0;
     private int health = 0;
     private Attributes baseAttributes;
     private Attributes totalAttributes;
+    private Equipment.Armor[] armorTypes;
+    private Equipment.Weapon[] weaponTypes;
 
-    public Stats(int level, int health, Attributes baseAttributes, Attributes totalAttributes) {
+    public Stats(int level, int health, Attributes baseAttributes, Attributes totalAttributes, Equipment.Armor[] armorTypes, Equipment.Weapon[] weaponTypes) {
         this.level = level;
         this.health = health;
         this.baseAttributes = baseAttributes;
         this.totalAttributes = totalAttributes;
+        this.armorTypes = armorTypes;
+        this.weaponTypes = weaponTypes;
     }
 
     public int getLevel() {

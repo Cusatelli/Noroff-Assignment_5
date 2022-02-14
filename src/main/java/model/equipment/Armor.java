@@ -2,10 +2,12 @@ package model.equipment;
 
 public abstract class Armor extends Equipment {
     private int resistance;
+    private Armor type;
 
-    public Armor(String name, int level, int resistance, Slot slot) {
+    public Armor(String name, int level, int resistance, Slot slot, Armor type) {
         super(name, level, slot);
         this.resistance = resistance;
+        this.type = type;
     }
 
     public int getResistance() {

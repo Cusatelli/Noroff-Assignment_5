@@ -2,10 +2,14 @@ package model.equipment;
 
 public abstract class Weapon extends Equipment {
     private int damage;
+    private double speed;
+    private Weapon type;
 
-    public Weapon(String name, int level, int damage) {
+    public Weapon(String name, int level, int damage, double speed, Weapon type) {
         super(name, level, Slot.Weapon);
         this.damage = damage;
+        this.speed = speed;
+        this.type = type;
     }
 
     public int getDamage() {
@@ -14,6 +18,22 @@ public abstract class Weapon extends Equipment {
 
     public void setDamage(int damage) {
         this.damage = damage;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public Weapon getType() {
+        return type;
+    }
+
+    public void setType(Weapon type) {
+        this.type = type;
     }
 
     @Override

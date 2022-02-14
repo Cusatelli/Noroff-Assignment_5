@@ -5,14 +5,23 @@ public abstract class Equipment {
     private int level;
     private Slot slot;
 
-    enum Type {
+    public enum Weapon {
+        Knuckles,
         Axe,
         Bow,
-        Daggers,
-        Hammers,
-        staffs,
-        Swords,
-        Wands
+        Dagger,
+        Hammer,
+        Staff,
+        Sword,
+        Wand
+    }
+
+    public enum Armor {
+        Nude,
+        Cloth,
+        Leather,
+        Mail,
+        Plate
     }
 
     public Equipment(String name, int level, Slot slot) {
