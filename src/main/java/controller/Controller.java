@@ -47,7 +47,7 @@ public class Controller {
             }
 
             if(State.getControllerState().equals(State.Controller.Update)) { // Continue of still running
-                String input = this.inputHandler.listen();
+                int input = this.inputHandler.listen();
                 this.inputHandler.interpreter(input);
                 this.renderer.render();
             }
