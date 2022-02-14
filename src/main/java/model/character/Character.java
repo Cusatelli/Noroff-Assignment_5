@@ -1,9 +1,6 @@
 package model.character;
 
-import model.role.Mage;
-import model.role.Ranger;
-import model.role.Rogue;
-import model.role.Warrior;
+import model.role.*;
 import model.stats.Stats;
 import model.equipment.Equipped;
 
@@ -23,8 +20,8 @@ public abstract class Character {
     public Character() {
         this.name = "Adventurer";
         this.role = Role.Deprived;
-        this.stats = new Stats(1, 15, null, null);
-        this.equipment = null;
+        this.stats = Deprived.Stats();
+        this.equipment = Deprived.Equipment();
     }
 
     public void initialize(Role role) {
@@ -35,13 +32,16 @@ public abstract class Character {
                 this.setEquipment(Mage.Equipment());
             }
             case Rogue -> {
-                this.setStats(new Rogue());
+                this.setStats(Rogue.Stats());
+                this.setEquipment(Rogue.Equipment());
             }
             case Ranger -> {
-                this.setStats(new Ranger());
+                this.setStats(Ranger.Stats());
+                this.setEquipment(Ranger.Equipment());
             }
             case Warrior -> {
-                this.setStats(new Warrior());
+                this.setStats(Warrior.Stats());
+                this.setEquipment(Warrior.Equipment());
             }
         }
     }
