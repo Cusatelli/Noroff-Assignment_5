@@ -20,6 +20,13 @@ public class Equipped {
         this.weapon = (Weapon)equipmentSet.get(Slot.Weapon);
     }
 
+    public Equipped(Armor[] armors, Weapon weapon) {
+        this.head = armors[0];
+        this.body = armors[1];
+        this.legs = armors[2];
+        this.weapon = weapon;
+    }
+
     public Armor getHead() {
         return head;
     }
