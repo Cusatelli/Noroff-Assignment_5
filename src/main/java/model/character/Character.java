@@ -54,6 +54,22 @@ public abstract class Character {
         this.name = name;
     }
 
+    public void takeDamage(int damage) {
+        this.setHealth(this.getHealth() - damage);
+    }
+
+    public void replenishHealth(int heal) {
+        this.setHealth(this.getHealth() + heal);
+    }
+
+    public int getHealth() {
+        return this.stats.getCurrentHealth();
+    }
+
+    public void setHealth(int health) {
+        this.stats.setCurrentHealth(health);
+    }
+
     public Role getRole() {
         return role;
     }
@@ -76,6 +92,14 @@ public abstract class Character {
 
     public void setEquipment(Equipped equipment) {
         this.equipment = equipment;
+    }
+
+    public void die() {
+        System.out.println("Game Over!");
+    }
+
+    public void levelUp(int experience) {
+        this.getStats().levelUp(experience);
     }
 
     @Override
