@@ -83,23 +83,28 @@ public class InputHandler {
     }
 
     private void handleCreateCharacterInput(int parsedInput) {
-        Character player = Player.getInstance();
         switch (parsedInput) {
             case 1 -> {
-                player.initialize(Role.Mage);
-                player.setRole(Role.Mage);
+                handleInputByRole(Role.Mage);
             }
             case 2 -> {
-                player.setRole(Role.Rogue);
+                handleInputByRole(Role.Rogue);
             }
             case 3 -> {
-                player.setRole(Role.Ranger);
+                handleInputByRole(Role.Ranger);
             }
             case 4 -> {
-                player.setRole(Role.Warrior);
+                handleInputByRole(Role.Warrior);
             }
             default -> Display.options(State.Input.CreateCharacter);
         }
+    }
+
+    private void handleInputByRole(Role role) {
+        Character player = Player.getInstance();
+        player.initialize(role);
+        player.setRole(role);
+
         Display.userSelectRole(player.getRole());
         Display.pressAnyKeyToContinue();
     }
