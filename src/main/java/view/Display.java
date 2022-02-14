@@ -88,4 +88,10 @@ public class Display {
         stringBuilder.append(" ").append(role).append("!"); // -> (" " + role + "!");
         System.out.println(stringBuilder);
     }
+
+    public static void invalidUserInput(String input) {
+        System.out.println("\nOops! '" + input + "' is not a valid input!" +
+                "\nPlease try an integer! \uD83D\uDE0A\n"
+        );
+    }
 }
