@@ -45,6 +45,13 @@ public class Attributes {
         this.resilience = resilience;
     }
 
+    public void levelUp(Attributes increment) {
+        this.setStrength(this.strength + increment.getStrength());
+        this.setDexterity(this.dexterity + increment.getDexterity());
+        this.setIntelligence(this.intelligence + increment.getIntelligence());
+        this.setResilience(this.resilience + increment.getResilience());
+    }
+
     @Override
     public String toString() {
         return "Attributes { " +
