@@ -4,7 +4,10 @@ import model.equipment.Equipment;
 
 public class Stats {
     private int level = 0;
-    private int health = 0;
+    private int requiredExperience = 5;
+    private int currentExperience = 0;
+    private int maxHealth = 0;
+    private int currentHealth = 0;
     private Attributes baseAttributes;
     private Attributes totalAttributes;
     private Equipment.Armor[] armorTypes;
@@ -12,7 +15,8 @@ public class Stats {
 
     public Stats(int level, int health, Attributes baseAttributes, Attributes totalAttributes, Equipment.Armor[] armorTypes, Equipment.Weapon[] weaponTypes) {
         this.level = level;
-        this.health = health;
+        this.maxHealth = health;
+        this.currentHealth = health;
         this.baseAttributes = baseAttributes;
         this.totalAttributes = totalAttributes;
         this.armorTypes = armorTypes;
@@ -27,12 +31,20 @@ public class Stats {
         this.level = level;
     }
 
-    public int getHealth() {
-        return health;
+    public int getMaxHealth() {
+        return maxHealth;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
     }
 
     public Attributes getBaseAttributes() {
@@ -51,11 +63,42 @@ public class Stats {
         this.totalAttributes = totalAttributes;
     }
 
+    public void setRequiredExperience(int requiredExperience) {
+        this.requiredExperience = requiredExperience;
+    }
+
+    public int getRequiredExperience() {
+        return this.requiredExperience;
+    }
+
+    public void setCurrentExperience(int currentExperience) {
+        this.currentExperience = currentExperience;
+    }
+
+    public int getCurrentExperience() {
+        return currentExperience;
+    }
+
+    public void levelUp(int experience) {
+        this.setCurrentExperience(this.currentExperience + experience);
+        if(this.getCurrentExperience() > this.getRequiredExperience()) {
+            this.setLevel(this.level + 1);
+            this.getTotalAttributes().levelUp(this.getBaseAttributes());
+            int experienceIncrement = 5;
+            this.setRequiredExperience(this.requiredExperience + (experienceIncrement * this.level));
+
+            this.setCurrentHealth(this.getMaxHealth()); // Replenish health
+
+            System.out.println("Level up! Your current level: " + this.getLevel());
+            System.out.println(this);
+        }
+    }
+
     @Override
     public String toString() {
         return "Stats { " +
                 "Level = " + level +
-                ", Health = " + health +
+                ", Health = " + maxHealth +
                 ", BaseAttributes = " + baseAttributes +
                 ", TotalAttributes = " + totalAttributes +
                 " }";
@@ -64,7 +107,7 @@ public class Stats {
     public String prettyPrint() {
         return "{" +
                 "\n\t\tLevel = " + level +
-                "\n\t\tHealth = " + health +
+                "\n\t\tHealth = " + maxHealth +
                 "\n\t\tBaseAttributes = " + baseAttributes.prettyPrint() +
                 "\n\t\tTotalAttributes = " + totalAttributes.prettyPrint() +
                 "\n\t}";
