@@ -2,20 +2,13 @@ package model.character;
 
 import model.role.*;
 import model.stats.Stats;
-import model.equipment.Equipped;
+import model.item.equipment.Equipped;
 
 public abstract class Character {
     private String name;
     private Role role;
     private Stats stats;
     private Equipped equipment;
-
-    public Character(String name, Role role, Stats stats, Equipped equipment) {
-        this.name = name;
-        this.role = role;
-        this.stats = stats;
-        this.equipment = equipment;
-    }
 
     public Character() {
         this.name = "Adventurer";
@@ -94,11 +87,15 @@ public abstract class Character {
         this.equipment = equipment;
     }
 
-    public void die() {
-        System.out.println("Game Over!");
+    public int getLevel() {
+        return this.stats.getLevel();
     }
 
-    public void levelUp(int experience) {
+    public boolean isDead() {
+        return this.getHealth() <= 0;
+    }
+
+    public void levelUp(int experience) { // TODO return boolean if levelup or not
         this.getStats().levelUp(experience);
     }
 
