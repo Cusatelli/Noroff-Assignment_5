@@ -5,6 +5,6 @@ import model.item.equipment.Slot;
 
 public class NoviceHead extends Armor {
     public NoviceHead() {
-        super("Novice Chainguard", 1, 0, Slot.Head, model.item.equipment.Armor.Mail);
+        super("Novice Chainguard", 1, 0, Slot.Head, Armor.Mail);
     }
 }
