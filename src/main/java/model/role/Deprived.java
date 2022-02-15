@@ -14,8 +14,8 @@ public class Deprived {
                 100,
                 new Attributes(2, 2, 1, 0),
                 new Attributes(2, 2, 1, 0), // Initialize to same as base.
-                new Equipment.Armor[]{ Equipment.Armor.Nude },
-                new Equipment.Weapon[]{ Equipment.Weapon.Knuckles }
+                new Equipment.ArmorType[]{ Equipment.ArmorType.Nude },
+                new Equipment.WeaponType[]{ Equipment.WeaponType.Knuckles }
         );
     }
 

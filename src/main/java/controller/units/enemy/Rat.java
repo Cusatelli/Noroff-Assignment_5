@@ -15,6 +15,6 @@ public class Rat extends Enemy {
 
     @Override
     public Weapon getAttack() {
-        return new Attack("Gnaw", 1, 1, 4, Equipment.Weapon.Knuckles);
+        return new Attack("Gnaw", 1, 1, 4, Equipment.WeaponType.Knuckles);
     }
 }

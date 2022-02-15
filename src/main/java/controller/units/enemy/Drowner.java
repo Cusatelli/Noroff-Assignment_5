@@ -17,6 +17,6 @@ public class Drowner extends Enemy {
 
     @Override
     public Weapon getAttack() {
-        return new Attack("Bite", 1, 11, 0.9, Equipment.Weapon.Knuckles);
+        return new Attack("Bite", 1, 11, 0.9, Equipment.WeaponType.Knuckles);
     }
 }

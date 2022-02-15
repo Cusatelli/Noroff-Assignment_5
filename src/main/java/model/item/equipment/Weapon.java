@@ -3,10 +3,10 @@ package model.item.equipment;
 public abstract class Weapon extends Equipment {
     private int damage;
     private double speed;
-    private Weapon type;
+    private WeaponType type;
 
-    public Weapon(String name, int level, int damage, double speed, Weapon type) {
-        super(name, level, Slot.Weapon);
+    public Weapon(String name, int level, int damage, double speed, WeaponType type) {
+        super(name, level, Slot.Weapon, null);
         this.damage = damage;
         this.speed = speed;
         this.type = type;
@@ -28,11 +28,11 @@ public abstract class Weapon extends Equipment {
         this.speed = speed;
     }
 
-    public Weapon getType() {
+    public WeaponType getWeaponType() {
         return type;
     }
 
-    public void setType(Weapon type) {
+    public void setWeaponType(WeaponType type) {
         this.type = type;
     }
 

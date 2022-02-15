@@ -20,6 +20,6 @@ public class Mercenary extends Enemy {
 
     @Override
     public Weapon getAttack() {
-        return new Attack("Punch", 1, 15, 0.5, Equipment.Weapon.Knuckles);
+        return new Attack("Punch", 1, 15, 0.5, Equipment.WeaponType.Knuckles);
     }
 }

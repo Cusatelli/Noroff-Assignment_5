@@ -14,8 +14,8 @@ public class Warrior {
                 100,
                 new Attributes(5, 2, 1, 0),
                 new Attributes(5, 2, 1, 0), // Initialize to same as base.
-                new Equipment.Armor[]{ Equipment.Armor.Mail, Equipment.Armor.Plate },
-                new Equipment.Weapon[]{ Equipment.Weapon.Axe, Equipment.Weapon.Hammer, Equipment.Weapon.Sword }
+                new Equipment.ArmorType[]{ Equipment.ArmorType.Mail, Equipment.ArmorType.Plate },
+                new Equipment.WeaponType[]{ Equipment.WeaponType.Axe, Equipment.WeaponType.Hammer, Equipment.WeaponType.Sword }
         );
     }
 

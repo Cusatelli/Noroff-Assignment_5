@@ -17,6 +17,6 @@ public class Crow extends Enemy {
 
     @Override
     public Weapon getAttack() {
-        return new Attack("Fangs", 1, 10, 1, Equipment.Weapon.Knuckles);
+        return new Attack("Fangs", 1, 10, 1, Equipment.WeaponType.Knuckles);
     }
 }

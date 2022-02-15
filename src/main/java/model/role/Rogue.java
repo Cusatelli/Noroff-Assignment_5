@@ -14,8 +14,8 @@ public class Rogue {
                 100,
                 new Attributes(2, 6, 1, 0),
                 new Attributes(2, 6, 1, 0), // Initialize to same as base.
-                new Equipment.Armor[]{ Equipment.Armor.Leather, Equipment.Armor.Mail },
-                new Equipment.Weapon[]{ Equipment.Weapon.Dagger, Equipment.Weapon.Sword }
+                new Equipment.ArmorType[]{ Equipment.ArmorType.Leather, Equipment.ArmorType.Mail },
+                new Equipment.WeaponType[]{ Equipment.WeaponType.Dagger, Equipment.WeaponType.Sword }
         );
     }
 

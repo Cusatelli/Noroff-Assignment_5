@@ -14,8 +14,8 @@ public class Ranger {
                 100,
                 new Attributes(1, 7, 1, 0),
                 new Attributes(1, 7, 1, 0), // Initialize to same as base.
-                new Equipment.Armor[]{ Equipment.Armor.Leather, Equipment.Armor.Mail },
-                new Equipment.Weapon[]{ Equipment.Weapon.Bow }
+                new Equipment.ArmorType[]{ Equipment.ArmorType.Leather, Equipment.ArmorType.Mail },
+                new Equipment.WeaponType[]{ Equipment.WeaponType.Bow }
         );
     }
 

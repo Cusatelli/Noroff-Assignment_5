@@ -15,6 +15,6 @@ public class Goblin extends Enemy {
 
     @Override
     public Weapon getAttack() {
-        return new Attack("Stab", 1, 15, 1.5, Equipment.Weapon.Knuckles);
+        return new Attack("Stab", 1, 15, 1.5, Equipment.WeaponType.Knuckles);
     }
 }

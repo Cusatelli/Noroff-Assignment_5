@@ -14,8 +14,8 @@ public class Mage {
                 100,
                 new Attributes(1, 1, 8, 0),
                 new Attributes(1, 1, 8, 0), // Initialize to same as base.
-                new Equipment.Armor[]{ Equipment.Armor.Cloth },
-                new Equipment.Weapon[]{ Equipment.Weapon.Staff, Equipment.Weapon.Wand }
+                new Equipment.ArmorType[]{ Equipment.ArmorType.Cloth },
+                new Equipment.WeaponType[]{ Equipment.WeaponType.Staff, Equipment.WeaponType.Wand }
         );
     }
 
