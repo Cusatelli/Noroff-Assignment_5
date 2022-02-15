@@ -1,6 +1,8 @@
 package model.item.equipment.set.leather;
 
+import exception.InvalidArmorException;
 import model.item.equipment.Armor;
+import model.item.equipment.Slot;
 import model.item.equipment.set.leather.adept.AdeptHead;
 import model.item.equipment.set.leather.adept.AdeptChest;
 import model.item.equipment.set.leather.adept.AdeptLegs;
@@ -27,6 +29,17 @@ public class Leather {
         public static Armor Legs() {
             return new NoviceLegs();
         }
+
+        public static Armor Get(Slot slot) {
+            switch (slot) {
+                case Head -> { return Head(); }
+                case Body -> { return Body(); }
+                case Legs -> { return Legs(); }
+            }
+            try { throw new InvalidArmorException("Can not get slot: " + slot); }
+            catch (InvalidArmorException e) { e.printStackTrace(); }
+            return null;
+        }
     }
 
     public static class Adept {
@@ -46,6 +59,17 @@ public class Leather {
         }
         public static Armor Legs() {
             return new AdeptLegs();
+        }
+
+        public static Armor Get(Slot slot) {
+            switch (slot) {
+                case Head -> { return Head(); }
+                case Body -> { return Body(); }
+                case Legs -> { return Legs(); }
+            }
+            try { throw new InvalidArmorException("Can not get slot: " + slot); }
+            catch (InvalidArmorException e) { e.printStackTrace(); }
+            return null;
         }
     }
 }
