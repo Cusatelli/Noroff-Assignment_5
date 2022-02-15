@@ -81,6 +81,7 @@ public class Display {
                 "\n" + number(2) + ". Heal (use Healing item)" +
                 "\n" + number(3) + ". Stats" +
                 "\n" + number(4) + ". Inventory" +
+                "\n" + number(5) + ". Equipment" +
                 "\n" + flee(0);
     }
 
@@ -89,15 +90,16 @@ public class Display {
                 "\n" + number(1) + ". Shop" +
                 "\n" + number(2) + ". Stats" +
                 "\n" + number(3) + ". Inventory" +
+                "\n" + number(4) + ". Equipment" +
                 "\n" + leave(0);
     }
 
-    public static String InteractShopMenu(int balance) {
+    public static String InteractShopMenu(int potionPrice, int foodPrice, int equipmentPrice, int balance) {
         return title("Shop") +
                 info("Silver: " + balance) +
-                "\n" + number(1) + ". Potion" +
-                "\n" + number(2) + ". Bread" +
-                "\n" + number(3) + ". Equipment" +
+                "\n" + number(1) + ". Potion    - " + potionPrice +
+                "\n" + number(2) + ". Bread     - " + foodPrice +
+                "\n" + number(3) + ". Equipment - " + equipmentPrice +
                 "\n" + number(0) + ". " + negative("Back");
     }
 
@@ -137,7 +139,7 @@ public class Display {
         return "You feel " + COLOR_YELLOW + "slightly" + COLOR_RESET + " replenished...";
     }
 
-    public static String EnemyVanquished(String name, int silver, int experience) {
+    public static String EnemyVanquished(String name, int experience, int silver) {
         return title("Victory!") +
                 "\nYou have vanquished the enemy '" + negative(name) + "'!" +
                 "\n" + info("       Rewards!       ") +
@@ -182,6 +184,10 @@ public class Display {
 
     public static String PlayerInventoryHealingItemNotFound() {
         return info("You're out of potions.");
+    }
+
+    public static String PlayerInventoryEquipmentItemNotFound() {
+        return info("You're do not have any equipment in your inventory.");
     }
 
     /* ----- HELPER METHODS ----- */
