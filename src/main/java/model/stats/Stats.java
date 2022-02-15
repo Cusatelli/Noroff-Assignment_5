@@ -1,6 +1,6 @@
 package model.stats;
 
-import model.equipment.Equipment;
+import model.item.equipment.Equipment;
 
 public class Stats {
     private int level = 0;
@@ -79,7 +79,7 @@ public class Stats {
         return currentExperience;
     }
 
-    public void levelUp(int experience) {
+    public void levelUp(int experience) { // TODO return boolean if levelup or not
         this.setCurrentExperience(this.currentExperience + experience);
         if(this.getCurrentExperience() > this.getRequiredExperience()) {
             this.setLevel(this.level + 1);

@@ -1,9 +1,9 @@
 package model.role;
 
-import model.equipment.Equipment;
-import model.equipment.Equipped;
-import model.equipment.plate.Plate;
-import model.equipment.weapon.axe.NoviceAxe;
+import model.item.equipment.Equipment;
+import model.item.equipment.Equipped;
+import model.item.equipment.set.plate.Plate;
+import model.item.equipment.weapon.axe.NoviceAxe;
 import model.stats.Attributes;
 import model.stats.Stats;
 

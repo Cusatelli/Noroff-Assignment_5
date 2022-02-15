@@ -1,9 +1,9 @@
 package model.role;
 
-import model.equipment.Equipment;
-import model.equipment.Equipped;
-import model.equipment.nude.Nude;
-import model.equipment.weapon.Knuckles;
+import model.item.equipment.Equipment;
+import model.item.equipment.Equipped;
+import model.item.equipment.set.nude.Nude;
+import model.item.equipment.weapon.Knuckles;
 import model.stats.Attributes;
 import model.stats.Stats;
 

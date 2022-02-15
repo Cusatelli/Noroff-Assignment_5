@@ -1,9 +1,9 @@
 package model.role;
 
-import model.equipment.Equipment;
-import model.equipment.Equipped;
-import model.equipment.leather.Leather;
-import model.equipment.weapon.bow.NoviceBow;
+import model.item.equipment.Equipment;
+import model.item.equipment.Equipped;
+import model.item.equipment.set.leather.Leather;
+import model.item.equipment.weapon.bow.NoviceBow;
 import model.stats.Attributes;
 import model.stats.Stats;
 

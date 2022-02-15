@@ -1,9 +1,9 @@
 package model.role;
 
-import model.equipment.Equipment;
-import model.equipment.Equipped;
-import model.equipment.mail.Mail;
-import model.equipment.weapon.dagger.NoviceDagger;
+import model.item.equipment.Equipment;
+import model.item.equipment.Equipped;
+import model.item.equipment.set.mail.Mail;
+import model.item.equipment.weapon.dagger.NoviceDagger;
 import model.stats.Attributes;
 import model.stats.Stats;
 
