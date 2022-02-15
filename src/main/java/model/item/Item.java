@@ -27,6 +27,7 @@ public class Item {
     private int value;
     private ItemType type;
     private Role role;
+    private Slot slot;
 
     public enum ItemType {
         Healing,
@@ -41,12 +42,13 @@ public class Item {
         this.role = null;
     }
 
-    public Item(String name, int level, int value, ItemType type, Role role) {
+    public Item(String name, int level, int value, ItemType type, Role role, Slot slot) {
         this.name = name;
         this.level = level;
         this.value = value;
         this.type = type;
         this.role = role;
+        this.slot = slot;
     }
 
     public Equipment revealEquipment() {
@@ -188,6 +190,14 @@ public class Item {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Slot getSlot() {
+        return slot;
+    }
+
+    public void setSlot(Slot slot) {
+        this.slot = slot;
     }
 
     @Override
