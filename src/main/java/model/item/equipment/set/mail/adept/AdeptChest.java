@@ -6,6 +6,6 @@ import model.stats.Attributes;
 
 public class AdeptChest extends Armor {
     public AdeptChest() {
-        super("Adept Chainmail", 5, new Attributes(2, 2, 0, 2), Slot.Body, Armor.Mail);
+        super("Adept Chainmail", 5, new Attributes(2, 2, 0, 2), Slot.Body, ArmorType.Mail);
     }
 }

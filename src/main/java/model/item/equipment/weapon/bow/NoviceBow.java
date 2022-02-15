@@ -4,6 +4,6 @@ import model.item.equipment.Weapon;
 
 public class NoviceBow extends Weapon {
     public NoviceBow() {
-        super("Novice Bow", 1, 7, 1.4, Weapon.Bow);
+        super("Novice Bow", 1, 7, 1.4, WeaponType.Bow);
     }
 }

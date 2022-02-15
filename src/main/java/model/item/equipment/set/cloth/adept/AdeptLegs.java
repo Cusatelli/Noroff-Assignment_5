@@ -6,6 +6,6 @@ import model.stats.Attributes;
 
 public class AdeptLegs extends Armor {
     public AdeptLegs() {
-        super("Adept Sandals", 5, new Attributes(0, 0, 4, 1), Slot.Legs, Armor.Cloth);
+        super("Adept Sandals", 5, new Attributes(0, 0, 4, 1), Slot.Legs, ArmorType.Cloth);
     }
 }
