@@ -17,6 +17,7 @@ public class State {
         Menu,
         Start,
         CreateCharacter,
+        Game,
         Combat,
         Interact,
         Exit,
