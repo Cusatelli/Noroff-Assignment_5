@@ -1,5 +1,6 @@
 package controller;
 
+import controller.units.Player;
 import model.State;
 import view.Display;
 
@@ -7,6 +8,7 @@ public class Controller {
     private static Controller instance = null;
     private Renderer renderer;
     private InputHandler inputHandler;
+    private GameManager gameManager;
     private Player player = null;
 
     private Controller() {}
@@ -19,6 +21,9 @@ public class Controller {
     public void initialize() {
         this.renderer = Renderer.getInstance();
         this.inputHandler = InputHandler.getInstance();
+        this.gameManager = GameManager.getInstance();
+        this.gameManager.initialize(this.inputHandler);
+
         if(player == null) { this.player = Player.getInstance(); }
 
         // When done... move on
@@ -26,8 +31,7 @@ public class Controller {
     }
 
     public void start() {
-        Display.welcome();
-        Display.options(State.Input.Menu);
+        System.out.println(Display.Start());
         State.setControllerState(State.Controller.Update);
     }
 
@@ -49,9 +53,7 @@ public class Controller {
             }
 
             if(State.getControllerState().equals(State.Controller.Update)) { // Continue of still running
-                int input = this.inputHandler.listen();
-                this.inputHandler.interpreter(input);
-
+                this.gameManager.handleUserInput();
                 this.renderer.render();
             }
 
