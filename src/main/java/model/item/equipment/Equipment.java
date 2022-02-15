@@ -1,11 +1,10 @@
 package model.item.equipment;
 
-public abstract class Equipment {
-    private String name;
-    private int level;
-    private Slot slot;
+import model.character.Role;
+import model.item.Item;
 
-    public enum Weapon {
+public abstract class Equipment extends Item {
+    public enum WeaponType {
         Knuckles,
         Axe,
         Bow,
@@ -16,7 +15,7 @@ public abstract class Equipment {
         Wand
     }
 
-    public enum Armor {
+    public enum ArmorType {
         Nude,
         Cloth,
         Leather,
@@ -24,42 +23,16 @@ public abstract class Equipment {
         Plate
     }
 
-    public Equipment(String name, int level, Slot slot) {
-        this.name = name;
-        this.level = level;
-        this.slot = slot;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public Slot getSlot() {
-        return slot;
-    }
-
-    public void setSlot(Slot slot) {
-        this.slot = slot;
+    public Equipment(String name, int level, Slot slot, Role role) {
+        super(name, level, -1, ItemType.Equipment, role, slot);
     }
 
     @Override
     public String toString() {
         return "Equipment { " +
-                "Name = '" + name + '\'' +
-                ", Level = " + level +
-                ", Slot = " + slot +
+                "Name = '" + getName() + '\'' +
+                ", Level = " + getLevel() +
+                ", Slot = " + getSlot() +
                 " }";
     }
 }
