@@ -4,10 +4,10 @@ import model.stats.Attributes;
 
 public abstract class Armor extends Equipment {
     private Attributes attributes;
-    private Armor type;
+    private ArmorType type;
 
-    public Armor(String name, int level, Attributes attributes, Slot slot, Armor type) {
-        super(name, level, slot);
+    public Armor(String name, int level, Attributes attributes, Slot slot, ArmorType type) {
+        super(name, level, slot, null);
         this.attributes = attributes;
         this.type = type;
     }
