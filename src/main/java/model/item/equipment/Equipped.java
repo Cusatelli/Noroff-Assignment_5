@@ -1,5 +1,6 @@
 package model.item.equipment;
 
+import model.item.Item;
 import model.item.equipment.set.EquipmentSet;
 
 public class Equipped {
@@ -59,6 +60,15 @@ public class Equipped {
 
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
+    }
+
+    public void set(Item item) {
+        switch (item.getSlot()) {
+            case Head -> setHead((Armor) item);
+            case Body -> setBody((Armor) item);
+            case Legs -> setLegs((Armor) item);
+            case Weapon -> setWeapon((Weapon) item);
+        }
     }
 
     @Override
