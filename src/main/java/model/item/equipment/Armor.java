@@ -3,13 +3,17 @@ package model.item.equipment;
 import model.stats.Attributes;
 
 public abstract class Armor extends Equipment {
-    private Attributes attributes;
-    private ArmorType type;
+    private final Attributes attributes;
+    private final ArmorType type;
 
     public Armor(String name, int level, Attributes attributes, Slot slot, ArmorType type) {
         super(name, level, slot, null);
         this.attributes = attributes;
         this.type = type;
+    }
+
+    public Attributes getAttributes() {
+        return this.attributes;
     }
 
     @Override
@@ -26,8 +30,7 @@ public abstract class Armor extends Equipment {
         return "{ " +
                 "\n\t\t\tName = '" + getName() + '\'' +
                 "\n\t\t\tLevel = " + getLevel() +
-                "\n\t\t\tSlot = " + getSlot() +
-                "\n\t\t\tAttributes = " + this.attributes.prettyPrint() +
+                "\n\t\t\tAttributes = " + this.attributes.toStringEquipment() +
                 "\n\t\t}";
     }
 }
