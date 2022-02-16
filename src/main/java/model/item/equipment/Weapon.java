@@ -2,7 +2,7 @@ package model.item.equipment;
 
 public abstract class Weapon extends Equipment {
     private int damage;
-    private double speed;
+    private final double speed;
     private WeaponType type;
 
     public Weapon(String name, int level, int damage, double speed, WeaponType type) {
@@ -22,10 +22,6 @@ public abstract class Weapon extends Equipment {
 
     public double getSpeed() {
         return speed;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
     }
 
     public WeaponType getWeaponType() {
@@ -50,7 +46,6 @@ public abstract class Weapon extends Equipment {
         return "{ " +
                 "\n\t\t\tName = '" + getName() + '\'' +
                 "\n\t\t\tLevel = " + getLevel() +
-                "\n\t\t\tSlot = " + getSlot() +
                 "\n\t\t\tDamage = " + this.damage +
                 "\n\t\t}";
     }
