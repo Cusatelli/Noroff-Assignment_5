@@ -26,31 +26,6 @@ public class GameManager {
     private int interactionState = -1;
     private int gameState = 0; // num 0-4 = Combat | num 5 = Interact
 
-    enum CombatState {
-        Escape, // Important that escape always is 0
-        Attack,
-        Heal,
-        Stats,
-        Inventory,
-        Equipment;
-
-        public static CombatState get(int index) {
-            System.out.println(CombatState.values()[index]);
-            return CombatState.values()[index];
-        }
-    }
-    enum InteractState {
-        Leave, // Important that leave always is 0
-        Shop,
-        Stats,
-        Inventory,
-        Equipment;
-
-        public static InteractState get(int index) {
-            return InteractState.values()[index];
-        }
-    }
-
     private GameManager() { }
 
     public static GameManager getInstance() {
@@ -180,13 +155,13 @@ public class GameManager {
         if(player.isDead()) {
             System.out.println(Display.PlayerVanquished(enemy.getName()));
             player = null;
-            State.setInputState(State.Input.Game); // TODO -> State.Input.Game
+            State.setInputState(State.Input.Game);
             this.handleUserInput();
         }
     }
 
     private void handlePlayerCombatState(int option) {
-        switch (CombatState.get(option)) {
+        switch (State.CombatState.get(option)) {
             case Attack -> {
                 int playerDamage = (int) player.getDamage();
                 enemy.takeDamage(playerDamage);
@@ -203,24 +178,12 @@ public class GameManager {
                     player.setSilver(player.getSilver() + silverReward);
                     enemy = null;
 
-                    State.setInputState(State.Input.Game); // TODO -> State.Input.Game
+                    State.setInputState(State.Input.Game);
                     this.handleUserInput();
                 }
             }
             case Heal -> {
-                Item healingItem = player.getFirstItemOfType(Item.ItemType.Healing);
-
-                if(healingItem == null) {
-                    System.out.println(Display.PlayerInventoryHealingItemNotFound());
-                } else {
-                    int heal = healingItem.getValue();
-                    System.out.println(Display.PlayerHeal(heal));
-                    if (heal > 5) System.out.println(Display.PlayerReplenishLowHeal());
-                    else System.out.println(Display.PlayerReplenishHighHeal());
-
-                    player.replenishHealth(randomRange(0, 10));
-                    player.getInventory().remove(healingItem); // Remove item last.
-                }
+                this.handlePlayerHeal();
                 this.handleUserInput();
             }
             case Stats -> {
@@ -239,7 +202,7 @@ public class GameManager {
                 boolean isSuccessfulEscape = randomRange(0, 1) == 1;
                 if(isSuccessfulEscape) {
                     System.out.println(Display.PlayerEscapeEnemySuccess(enemy.getName()));
-                    State.setInputState(State.Input.Game); // TODO -> State.Input.Game
+                    State.setInputState(State.Input.Game);
                 } else {
                     System.out.println(Display.PlayerEscapeEnemyFail());
                     this.isPlayerTurn = !this.isPlayerTurn;
@@ -260,7 +223,7 @@ public class GameManager {
     }
 
     private void handlePlayerInteractionState(int option) {
-        switch (InteractState.get(option)) {
+        switch (State.InteractState.get(option)) {
             case Shop -> {
                 this.handleInteractShop();
                 this.handleUserInput();
@@ -270,11 +233,10 @@ public class GameManager {
                 this.handleUserInput(); // Go back to top!
             }
             case Inventory -> {
-                System.out.println(player.getInventoryAsString());
-                System.out.println("1. Use\n2. Equip\n0. Back"); // TODO -> To Display
+                System.out.println(Display.InventoryMenu(this.player.getInventory()));
                 switch (this.listen()) {
                     case 1 -> {
-                        System.out.println("Heal..."); // TODO HEAL
+                        this.handlePlayerHeal();
                     }
                     case 2 -> {
                         Item equipmentItem = this.player.getFirstItemOfType(Item.ItemType.Equipment);
@@ -295,7 +257,7 @@ public class GameManager {
                 System.out.println(player.getEquipment());
             }
             case Leave -> {
-                State.setInputState(State.Input.Game); // TODO: State.setInputState(State.Input.Game);
+                State.setInputState(State.Input.Game);
                 this.isPlayerTurn = false;
                 this.handleUserInput();
             }
@@ -347,6 +309,22 @@ public class GameManager {
         }
         System.out.println(Display.Inventory(player.getInventoryAsString(), player.getSilver()));
         interactionState = interactOption;
+    }
+
+    private void handlePlayerHeal() {
+        Item healingItem = player.getFirstItemOfType(Item.ItemType.Healing);
+
+        if(healingItem == null) {
+            System.out.println(Display.PlayerInventoryHealingItemNotFound());
+        } else {
+            int heal = healingItem.getValue();
+            System.out.println(Display.PlayerHeal(heal));
+            if (heal > 5) System.out.println(Display.PlayerReplenishLowHeal());
+            else System.out.println(Display.PlayerReplenishHighHeal());
+
+            player.replenishHealth(randomRange(0, 10));
+            player.getInventory().remove(healingItem); // Remove item last.
+        }
     }
 
     private void initializePlayer(Role role) {
