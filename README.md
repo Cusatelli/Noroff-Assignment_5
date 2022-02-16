@@ -5,8 +5,6 @@
   <h3 align="center">Noroff Assignment 5</h3>
   <p align="center">
     RPG Character
-    <br />
-    <a href="#">View Demo</a>
   </p>
 </div>
 
