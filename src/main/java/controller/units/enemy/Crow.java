@@ -4,7 +4,18 @@ import model.character.Enemy;
 import model.item.equipment.Equipment;
 import model.item.equipment.Weapon;
 
+/**
+ * Crow extending enemy.
+ */
 public class Crow extends Enemy {
+
+    /**
+     * Initialize Crow.
+     * @param name Crow name.
+     * @param maxHealth Crow max health.
+     * @param damage Crow damage.
+     * @param experience Crow experience received on defeat.
+     */
     public Crow(String name, int maxHealth, int damage, int experience) {
         super(name, maxHealth, damage, experience);
         this.setIntroduction(
