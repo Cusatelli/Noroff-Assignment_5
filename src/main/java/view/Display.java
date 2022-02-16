@@ -2,6 +2,9 @@ package view;
 
 import controller.units.Player;
 import model.character.Role;
+import model.item.Item;
+
+import java.util.List;
 
 public class Display {
     public static final String COLOR_RESET = "\u001B[0m";
@@ -102,6 +105,20 @@ public class Display {
                 "\n" + number(2) + ". Bread     - " + foodPrice +
                 "\n" + number(3) + ". Equipment - " + equipmentPrice +
                 "\n" + number(0) + ". " + negative("Back");
+    }
+
+    public static String InventoryMenu(List<Item> inventory) {
+        StringBuilder stringBuilder = new StringBuilder(title("Inventory"));
+        int index = 0;
+        for (Item item : inventory) {
+            stringBuilder.append("\n").append(number(index++)).append(". [ ").append(item.getName()).append(" ]");
+            if(item.getType() == Item.ItemType.Healing) { stringBuilder.append("[ ").append(item.getValue()).append(" ]"); }
+            else { stringBuilder.append("[ ").append(item.getLevel()).append(" ]"); }
+        }
+        stringBuilder.append("\n\n").append(number(1)).append(". Use Consumable");
+        stringBuilder.append("\n").append(number(2)).append(". Equip Item");
+        stringBuilder.append("\n").append(number(0)).append(". ").append(negative("Back"));
+        return stringBuilder.toString();
     }
 
     public static String PlayingAsDeprived() {
