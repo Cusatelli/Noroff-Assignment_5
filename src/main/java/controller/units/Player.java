@@ -8,6 +8,9 @@ import model.stats.Attributes;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Player extending Character.
+ */
 public class Player extends Character {
     private static Player instance = null;
     private List<Item> inventory = new ArrayList<>();
@@ -17,11 +20,19 @@ public class Player extends Character {
         super();
     }
 
+    /**
+     * Singleton
+     * @return Player.
+     */
     public static Player getInstance() {
         if(instance == null) { instance = new Player(); }
         return instance;
     }
 
+    /**
+     * Calculate Player Damage based on Attributes, Role, Equipment and Level.
+     * @return Damage.
+     */
     public double getDamage() {
         Weapon weapon =  this.getEquipment().getWeapon();
         double weaponDamage = (weapon.getDamage() * weapon.getSpeed());
@@ -37,6 +48,10 @@ public class Player extends Character {
         return weaponDamage + (weaponDamage * (statModifier / 100));
     }
 
+    /**
+     * Calculate total attributes based on equipment and base stats.
+     * @return Total Attributes.
+     */
     private Attributes calculateAttributes() {
         Attributes base = getStats().getTotalAttributes();
         Attributes head = getEquipment().getHead().getAttributes();
@@ -51,14 +66,27 @@ public class Player extends Character {
         );
     }
 
+    /**
+     * Set this instance... Should not be used.
+     * @param instance instance
+     */// TODO Remove
     private static void setInstance(Player instance) {
         Player.instance = instance;
     }
 
+    /**
+     * Get Player inventory.
+     * @return List of items.
+     */
     public List<Item> getInventory() {
         return inventory;
     }
 
+    /**
+     * Get top level item in inventory list.
+     * @param itemType item to fetch.
+     * @return Item.
+     */
     public Item getFirstItemOfType(Item.ItemType itemType) {
         for (Item item : this.inventory) {
             if(item.getType() == itemType) {
@@ -68,6 +96,38 @@ public class Player extends Character {
         return null;
     }
 
+    /**
+     * Set Player inventory to new List of items.
+     * @param inventory List of items.
+     */
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    /**
+     * Add item to inventory list.
+     * @param item Item to add.
+     */
+    public void addItemToInventory(Item item) {
+        this.inventory.add(item);
+    }
+
+    /**
+     * Get Current Currency count (Silver)
+     * @return Silver.
+     */
+    public int getSilver() {
+        return this.silver;
+    }
+
+    /**
+     * Set Current Currency count (Silver).
+     * @param silver Silver.
+     */
+    public void setSilver(int silver) {
+        this.silver = silver;
+    }
+
     public String getInventoryAsString() {
         StringBuilder stringBuilder = new StringBuilder("Inventory {");
         for (Item item: inventory) {
@@ -75,22 +135,6 @@ public class Player extends Character {
         }
         stringBuilder.append("\n}");
         return stringBuilder.toString();
-    }
-
-    public void setInventory(List<Item> inventory) {
-        this.inventory = inventory;
-    }
-
-    public void addItemToInventory(Item item) {
-        this.inventory.add(item);
-    }
-
-    public int getSilver() {
-        return this.silver;
-    }
-
-    public void setSilver(int silver) {
-        this.silver = silver;
     }
 
     @Override
