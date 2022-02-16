@@ -18,7 +18,14 @@ import model.item.equipment.weapon.dagger.NoviceDagger;
 import model.item.equipment.weapon.staff.AdeptStaff;
 import model.item.equipment.weapon.staff.NoviceStaff;
 
+/**
+ * Abstract class extending Item class used to create Equipment like Armor and Weapons.
+ */
 public abstract class Equipment extends Item {
+
+    /**
+     * All available Weapon Types.
+     */
     public enum WeaponType {
         Knuckles,
         Axe,
@@ -30,6 +37,9 @@ public abstract class Equipment extends Item {
         Wand
     }
 
+    /**
+     * All available Armor Types.
+     */
     public enum ArmorType {
         Nude,
         Cloth,
@@ -38,10 +48,23 @@ public abstract class Equipment extends Item {
         Plate
     }
 
+    /**
+     * Initialize Equipment.
+     * @param name Equipment name.
+     * @param level Equipment level.
+     * @param slot Equipment slot.
+     * @param role Character Role.
+     */
     public Equipment(String name, int level, Slot slot, Role role) {
         super(name, level, -1, ItemType.Equipment, role, slot);
     }
 
+    /**
+     * Get Novice role specific Armor set or Weapon.
+     * @param role specific character role.
+     * @param slot equipment slot.
+     * @return Equipment found.
+     */
     public static Equipment GetNovice(Role role, Slot slot) {
         Armor armor;
         switch (role) {
@@ -69,6 +92,12 @@ public abstract class Equipment extends Item {
         return armor;
     }
 
+    /**
+     * Get Adept role specific Armor set or Weapon.
+     * @param role specific character role.
+     * @param slot equipment slot.
+     * @return Equipment found.
+     */
     public static Equipment GetAdept(Role role, Slot slot) {
         Armor armor;
         switch (role) {

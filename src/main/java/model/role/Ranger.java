@@ -7,7 +7,15 @@ import model.item.equipment.weapon.bow.NoviceBow;
 import model.stats.Attributes;
 import model.stats.Stats;
 
+/**
+ * Character Ranger Class (Playable Role).
+ */
 public class Ranger {
+
+    /**
+     * Initialize Ranger class (role) with unique stats.
+     * @return Stats.
+     */
     public static Stats Stats() {
         return new Stats(
                 1,
@@ -19,6 +27,10 @@ public class Ranger {
         );
     }
 
+    /**
+     * Get Ranger class (role) unique Equipment (Leather Armor & Bow Weapon).
+     * @return Equipped equipment
+     */
     public static Equipped Equipment() {
         return new Equipped(Leather.Novice.Set(), new NoviceBow());
     }

@@ -10,8 +10,20 @@ import model.item.equipment.set.cloth.novice.NoviceChest;
 import model.item.equipment.set.cloth.novice.NoviceHead;
 import model.item.equipment.set.cloth.novice.NoviceLegs;
 
+/**
+ * Collection of Cloth armor items.
+ */
 public class Cloth {
+
+    /**
+     * Novice items.
+     */
     public static class Novice {
+
+        /**
+         * Set Novice armor.
+         * @return Armor array.
+         */
         public static Armor[] Set() {
             return new Armor[] {
                 new NoviceHead(),// Head
@@ -20,16 +32,35 @@ public class Cloth {
             };
         }
 
+        /**
+         * Initialize Head armor.
+         * @return Armor with Head slot.
+         */
         public static Armor Head() {
             return new NoviceHead();
         }
+
+        /**
+         * Initialize Body armor.
+         * @return Armor with Body slot.
+         */
         public static Armor Body() {
             return new NoviceChest();
         }
+
+        /**
+         * Initialize Legs armor.
+         * @return Armor with Legs slot.
+         */
         public static Armor Legs() {
             return new NoviceLegs();
         }
 
+        /**
+         * Get Armor from a specific slot.
+         * @param slot armor slot.
+         * @return Armor.
+         */
         public static Armor Get(Slot slot) {
             switch (slot) {
                 case Head -> { return Head(); }
@@ -42,7 +73,15 @@ public class Cloth {
         }
     }
 
+    /**
+     * Adept items.
+     */
     public static class Adept {
+
+        /**
+         * Set Adept armor.
+         * @return Armor array.
+         */
         public static Armor[] Set() {
             return new Armor[] {
                 new AdeptHead(),// Head
@@ -51,16 +90,35 @@ public class Cloth {
             };
         }
 
+        /**
+         * Initialize Head armor.
+         * @return Armor with Head slot.
+         */
         public static Armor Head() {
             return new AdeptHead();
         }
+
+        /**
+         * Initialize Body armor.
+         * @return Armor with Body slot.
+         */
         public static Armor Body() {
             return new AdeptChest();
         }
+
+        /**
+         * Initialize Legs armor.
+         * @return Armor with Legs slot.
+         */
         public static Armor Legs() {
             return new AdeptLegs();
         }
 
+        /**
+         * Get Armor from a specific slot.
+         * @param slot armor slot.
+         * @return Armor.
+         */
         public static Armor Get(Slot slot) {
             switch (slot) {
                 case Head -> { return Head(); }

@@ -7,7 +7,15 @@ import model.item.equipment.weapon.staff.NoviceStaff;
 import model.stats.Attributes;
 import model.stats.Stats;
 
+/**
+ * Character Mage Class (Playable Role).
+ */
 public class Mage {
+
+    /**
+     * Initialize Mage class (role) with unique stats.
+     * @return Stats.
+     */
     public static Stats Stats() {
         return new Stats(
                 1,
@@ -19,6 +27,10 @@ public class Mage {
         );
     }
 
+    /**
+     * Get Mage class (role) unique Equipment (Cloth Armor & Staff Weapon).
+     * @return Equipped equipment
+     */
     public static Equipped Equipment() {
         return new Equipped(Cloth.Novice.Set(), new NoviceStaff());
     }

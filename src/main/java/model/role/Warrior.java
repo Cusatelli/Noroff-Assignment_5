@@ -7,7 +7,15 @@ import model.item.equipment.weapon.axe.NoviceAxe;
 import model.stats.Attributes;
 import model.stats.Stats;
 
+/**
+ * Character Warrior Class (Playable Role).
+ */
 public class Warrior {
+
+    /**
+     * Initialize Warrior class (role) with unique stats.
+     * @return Stats.
+     */
     public static Stats Stats() {
         return new Stats(
                 1,
@@ -19,6 +27,10 @@ public class Warrior {
         );
     }
 
+    /**
+     * Get Rogue class (role) unique Equipment (Plate Armor & Axe Weapon).
+     * @return Equipped equipment
+     */
     public static Equipped Equipment() {
         return new Equipped(Plate.Novice.Set(), new NoviceAxe());
     }

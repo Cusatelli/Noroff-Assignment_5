@@ -16,6 +16,10 @@ import view.Display;
  * TODO: Separate code further into methods and classes.
  *  & break down switch statements...
  */
+
+/**
+ * Game Manager Class.
+ */
 public class GameManager {
     private static GameManager instance = null;
     private InputHandler inputHandler = null;
@@ -28,11 +32,19 @@ public class GameManager {
 
     private GameManager() { }
 
+    /**
+     * Singleton
+     * @return GameManager.
+     */
     public static GameManager getInstance() {
         if(instance == null) { instance = new GameManager(); }
         return instance;
     }
 
+    /**
+     * Initialize InputHandler.
+     * @param inputHandler User Input Handler.
+     */
     public void initialize(InputHandler inputHandler) {
         this.inputHandler = inputHandler;
         this.enemy = null;
@@ -41,6 +53,9 @@ public class GameManager {
         this.isPlayerTurn = false;
     }
 
+    /**
+     * Depending on user input and current input state proceed to the next state accordingly.
+     */
     public void handleUserInput() {
         switch (State.getInputState()) {
             case Menu -> {
@@ -146,6 +161,10 @@ public class GameManager {
         this.handleUserInput(); // Recursive if not exit.
     }
 
+    /**
+     * Handle Enemy turn in Combat.
+     * This method always results in the Enemy attacking the player.
+     */
     private void handleEnemyCombatState() {
         Weapon enemyAttack = this.enemy.getAttack();
         int enemyDamage = enemyAttack.getDamage();
@@ -160,6 +179,10 @@ public class GameManager {
         }
     }
 
+    /**
+     * Based on user input during Player turn in combat proceed.
+     * @param option option which user decides to proceed with. (Converted to enum).
+     */
     private void handlePlayerCombatState(int option) {
         switch (State.CombatState.get(option)) {
             case Attack -> {
@@ -212,6 +235,10 @@ public class GameManager {
         }
     }
 
+    /**
+     * Handle NPC turn in Interaction.
+     * @param interactionState which state the NPC is in.
+     */
     private void handleNPCInteractState(int interactionState) {
         switch (interactionState) {
             case -1 -> System.out.println(Display.NPCIntroduction(npc.getIntroduction()));
@@ -222,6 +249,10 @@ public class GameManager {
         }
     }
 
+    /**
+     * User input when in Interaction with NPC.
+     * @param option option user decides to proceed with.
+     */
     private void handlePlayerInteractionState(int option) {
         switch (State.InteractState.get(option)) {
             case Shop -> {
@@ -264,6 +295,9 @@ public class GameManager {
         }
     }
 
+    /**
+     * Handle the userinput based on which item they wish to buy (or go back).
+     */
     private void handleInteractShop() {
         int silverBalance = player.getSilver();
         int potionPrice = 5;
@@ -311,6 +345,9 @@ public class GameManager {
         interactionState = interactOption;
     }
 
+    /**
+     * On player input to heal, increment its health based on item.
+     */
     private void handlePlayerHeal() {
         Item healingItem = player.getFirstItemOfType(Item.ItemType.Healing);
 
@@ -327,6 +364,10 @@ public class GameManager {
         }
     }
 
+    /**
+     * Initialize the player at start (Create Character).
+     * @param role Role the user wishes to play.
+     */
     private void initializePlayer(Role role) {
         Player player = Player.getInstance();
         player.initialize(role);
@@ -335,6 +376,10 @@ public class GameManager {
         Display.PlayerSelectedRole(role);
     }
 
+    /**
+     * Inititalize the NPC similarly like Player.
+     * @param role Role the npc "plays".
+     */
     private void initializeNPC(Role role) {
         npc.initialize(role);
         npc.setRole(role);
@@ -346,6 +391,11 @@ public class GameManager {
         );
     }
 
+    /**
+     * Initialize the Enemy similar like NPC & Player.
+     * @param randomRange which enemy to spawn. Usually selected randomly.
+     * @return Enemy initialized.
+     */
     private Enemy initializeEnemy(int randomRange) {
         int level = player.getLevel();
         switch (randomRange) {
@@ -367,11 +417,21 @@ public class GameManager {
         }
     }
 
+    /**
+     * Random Number between two numbers.
+     * @param min minimum number.
+     * @param max maximum number.
+     * @return random number.
+     */
     private int randomRange(int min, int max) {
         int range = max - min + 1;
         return (int)(Math.random() * range) + min;
     }
 
+    /**
+     * Helper access function.
+     * @return user input.
+     */
     private int listen() {
         return this.inputHandler.listen();
     }

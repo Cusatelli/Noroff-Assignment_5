@@ -4,6 +4,9 @@ import controller.units.Player;
 import model.State;
 import view.Display;
 
+/**
+ * Game loop controller.
+ */
 public class Controller {
     private static Controller instance = null;
     private Renderer renderer;
@@ -13,11 +16,18 @@ public class Controller {
 
     private Controller() {}
 
+    /**
+     * Singleton
+     * @return Controller.
+     */
     public static Controller getInstance() {
         if(instance == null) { instance = new Controller(); }
         return instance;
     }
 
+    /**
+     * Initialize.
+     */
     public void initialize() {
         this.renderer = Renderer.getInstance();
         this.inputHandler = InputHandler.getInstance();
@@ -30,11 +40,17 @@ public class Controller {
         State.setControllerState(State.Controller.Start);
     }
 
+    /**
+     * Start
+     */
     public void start() {
         System.out.println(Display.Start());
         State.setControllerState(State.Controller.Update);
     }
 
+    /**
+     * Update loop
+     */
     void update() {
         long lastTime = System.nanoTime();
         double updatesPerSecond = 10.0;
@@ -48,13 +64,13 @@ public class Controller {
             lastTime = currentTime;
 
             while (delta >= 1) { // Delta Update Loop
-                renderer.update();
+                //renderer.update();
                 delta--;
             }
 
             if(State.getControllerState().equals(State.Controller.Update)) { // Continue of still running
                 this.gameManager.handleUserInput();
-                this.renderer.render();
+                //this.renderer.render();
             }
 
             if(System.currentTimeMillis() - timer > 1000) { // Update Time
@@ -64,11 +80,17 @@ public class Controller {
         exit(); // When Loop has finished, Exit
     }
 
+    /**
+     * Exit loop
+     */
     public void exit() {
         State.setInputState(State.Input.Terminate);
         State.setControllerState(State.Controller.Terminate);
     }
 
+    /**
+     * Terminate.
+     */
     public void terminate() {
         System.exit(1);
     }

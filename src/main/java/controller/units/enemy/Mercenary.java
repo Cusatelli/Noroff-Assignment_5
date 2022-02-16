@@ -4,7 +4,18 @@ import model.character.Enemy;
 import model.item.equipment.Equipment;
 import model.item.equipment.Weapon;
 
+/**
+ * Mercenary extending enemy.
+ */
 public class Mercenary extends Enemy {
+
+    /**
+     * Initialize Mercenary.
+     * @param name Mercenary name.
+     * @param maxHealth Mercenary max health.
+     * @param damage Mercenary damage.
+     * @param experience Mercenary experience received on defeat.
+     */
     public Mercenary(String name, int maxHealth, int damage, int experience) {
         super(name, maxHealth, damage, experience);
         this.setIntroduction(
