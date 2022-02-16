@@ -35,6 +35,10 @@ public class Stats {
         return maxHealth;
     }
 
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
     public int getCurrentHealth() {
         return currentHealth;
     }
@@ -69,7 +73,7 @@ public class Stats {
 
     public boolean levelUp(int experience) {
         this.setCurrentExperience(this.currentExperience + experience);
-        if(this.getCurrentExperience() > this.getRequiredExperience()) {
+        if(this.getCurrentExperience() >= this.getRequiredExperience()) {
             this.setLevel(this.level + 1);
             this.getTotalAttributes().levelUp(this.getBaseAttributes());
             int experienceIncrement = 5;
