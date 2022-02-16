@@ -1,5 +1,6 @@
 package view;
 
+import controller.units.Player;
 import model.character.Role;
 
 public class Display {
@@ -163,7 +164,7 @@ public class Display {
     }
 
     public static String NPCIntroduction(String introduction) {
-        return introduction;
+        return "\n" + introduction;
     }
 
     public static String NPCInteractStatePotion() {
@@ -188,6 +189,22 @@ public class Display {
 
     public static String PlayerInventoryEquipmentItemNotFound() {
         return info("You're do not have any equipment in your inventory.");
+    }
+
+    public static String Inventory(String inventory, int silver) {
+        return title("Inventory", BACKGROUND_COLOR_PURPLE, COLOR_BLACK) +
+                "\n" + inventory +
+                "\nSilver: " + number(silver);
+    }
+
+    public static String PlayerLevelUp(Player player) {
+        return title("Level Up!") +
+                info("Level") + " = " + number(player.getLevel()) +
+                info("Stats") + " = " + player.getStats().getTotalAttributes();
+    }
+
+    public static String EnemyIntroduction(String introduction) {
+        return "\n" + introduction;
     }
 
     /* ----- HELPER METHODS ----- */
@@ -256,11 +273,5 @@ public class Display {
         }
 
         return stringBuilder.toString();
-    }
-
-    public static String Inventory(String inventory, int silver) {
-        return title("Inventory", BACKGROUND_COLOR_PURPLE, COLOR_BLACK) +
-                "\n" + inventory +
-                "\nSilver: " + number(silver);
     }
 }
