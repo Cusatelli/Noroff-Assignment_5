@@ -1,10 +1,10 @@
 package model.stats;
 
 public class Attributes {
-    private int strength = 0;
-    private int dexterity = 0;
-    private int intelligence = 0;
-    private int resilience = 0;
+    private int strength;
+    private int dexterity;
+    private int intelligence;
+    private int resilience;
 
     public Attributes(int strength, int dexterity, int intelligence, int resilience) {
         this.strength = strength;
@@ -62,12 +62,23 @@ public class Attributes {
                 " }";
     }
 
-    public String prettyPrint() {
-        return "{" +
-                "\n\t\t\tStrength = " + strength +
-                "\n\t\t\tDexterity = " + dexterity +
-                "\n\t\t\tIntelligence = " + intelligence +
-                "\n\t\t\tResilience = " + resilience +
-                "\n\t\t}";
+    public String toStringStats() {
+        StringBuilder stringBuilder = new StringBuilder("{");
+        if(strength != 0) { stringBuilder.append("\n\t\t\tStrength = " + strength); }
+        if(dexterity != 0) { stringBuilder.append("\n\t\t\tDexterity = " + dexterity); }
+        if(intelligence != 0) { stringBuilder.append("\n\t\t\tIntelligence = " + intelligence); }
+        if(resilience != 0) { stringBuilder.append("\n\t\t\tResilience = " + resilience); }
+        stringBuilder.append("\n\t\t}");
+        return stringBuilder.toString();
+    }
+
+    public String toStringEquipment() {
+        StringBuilder stringBuilder = new StringBuilder("{");
+        if(strength != 0) { stringBuilder.append("\n\t\t\t\tStrength = " + strength); }
+        if(dexterity != 0) { stringBuilder.append("\n\t\t\t\tDexterity = " + dexterity); }
+        if(intelligence != 0) { stringBuilder.append("\n\t\t\t\tIntelligence = " + intelligence); }
+        if(resilience != 0) { stringBuilder.append("\n\t\t\t\tResilience = " + resilience); }
+        stringBuilder.append("\n\t\t\t}");
+        return stringBuilder.toString();
     }
 }
