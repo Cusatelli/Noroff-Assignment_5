@@ -5,7 +5,7 @@ import model.item.equipment.Slot;
 import model.stats.Attributes;
 
 /**
- * Novice Chest extending Armor.
+ * Adept Chest extending Armor.
  */
 public class AdeptChest extends Armor {
 
