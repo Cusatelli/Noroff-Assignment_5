@@ -67,7 +67,7 @@ public class Stats {
         return currentExperience;
     }
 
-    public boolean levelUp(int experience) { // TODO return boolean if levelup or not
+    public boolean levelUp(int experience) {
         this.setCurrentExperience(this.currentExperience + experience);
         if(this.getCurrentExperience() > this.getRequiredExperience()) {
             this.setLevel(this.level + 1);
