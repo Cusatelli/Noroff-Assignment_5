@@ -7,7 +7,15 @@ import model.item.equipment.weapon.Knuckles;
 import model.stats.Attributes;
 import model.stats.Stats;
 
+/**
+ * Character Default Deprived Class (Playable Role).
+ */
 public class Deprived {
+
+    /**
+     * Initialize Default Deprived class (role) with unique stats.
+     * @return Stats.
+     */
     public static Stats Stats() {
         return new Stats(
                 1,
@@ -19,6 +27,10 @@ public class Deprived {
         );
     }
 
+    /**
+     * Get Default Deprived class (role) unique Equipment (Nude & Knuckles).
+     * @return Equipped equipment
+     */
     public static Equipped Equipment() {
         return new Equipped(Nude.Deprived.Set(), new Knuckles());
     }

@@ -7,7 +7,15 @@ import model.item.equipment.weapon.dagger.NoviceDagger;
 import model.stats.Attributes;
 import model.stats.Stats;
 
+/**
+ * Character Rogue Class (Playable Role).
+ */
 public class Rogue {
+
+    /**
+     * Initialize Rogue class (role) with unique stats.
+     * @return Stats.
+     */
     public static Stats Stats() {
         return new Stats(
                 1,
@@ -19,6 +27,10 @@ public class Rogue {
         );
     }
 
+    /**
+     * Get Rogue class (role) unique Equipment (Mail Armor & Dagger Weapon).
+     * @return Equipped equipment
+     */
     public static Equipped Equipment() {
         return new Equipped(Mail.Novice.Set(), new NoviceDagger());
     }
