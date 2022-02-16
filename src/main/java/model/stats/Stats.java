@@ -8,7 +8,7 @@ public class Stats {
     private int currentExperience = 0;
     private int maxHealth = 0;
     private int currentHealth = 0;
-    private Attributes baseAttributes;
+    private final Attributes baseAttributes;
     private Attributes totalAttributes;
     private Equipment.ArmorType[] armorTypes;
     private Equipment.WeaponType[] weaponTypes;
@@ -35,10 +35,6 @@ public class Stats {
         return maxHealth;
     }
 
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    }
-
     public int getCurrentHealth() {
         return currentHealth;
     }
@@ -51,16 +47,8 @@ public class Stats {
         return baseAttributes;
     }
 
-    public void setBaseAttributes(Attributes baseAttributes) {
-        this.baseAttributes = baseAttributes;
-    }
-
     public Attributes getTotalAttributes() {
         return totalAttributes;
-    }
-
-    public void setTotalAttributes(Attributes totalAttributes) {
-        this.totalAttributes = totalAttributes;
     }
 
     public void setRequiredExperience(int requiredExperience) {
@@ -79,7 +67,7 @@ public class Stats {
         return currentExperience;
     }
 
-    public void levelUp(int experience) { // TODO return boolean if levelup or not
+    public boolean levelUp(int experience) { // TODO return boolean if levelup or not
         this.setCurrentExperience(this.currentExperience + experience);
         if(this.getCurrentExperience() > this.getRequiredExperience()) {
             this.setLevel(this.level + 1);
@@ -89,9 +77,9 @@ public class Stats {
 
             this.setCurrentHealth(this.getMaxHealth()); // Replenish health
 
-            System.out.println("Level up! Your current level: " + this.getLevel());
-            System.out.println(this);
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -108,8 +96,7 @@ public class Stats {
         return "{" +
                 "\n\t\tLevel = " + level +
                 "\n\t\tHealth = " + maxHealth +
-                "\n\t\tBaseAttributes = " + baseAttributes.prettyPrint() +
-                "\n\t\tTotalAttributes = " + totalAttributes.prettyPrint() +
+                "\n\t\tAttributes = " + totalAttributes.toStringStats() +
                 "\n\t}";
     }
 }
