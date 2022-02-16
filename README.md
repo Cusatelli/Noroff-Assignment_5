@@ -40,7 +40,8 @@
 - Logical grouping
 
 Marks will be allocated based on the grading rubric provided.
-<a href="#">PDF</a>
+
+<a href="/Assignment%201_Java_RPGCharacters.pdf">Assignment 1_Java_RPGCharacters.pdf</a>
 
 # Install
 ```
