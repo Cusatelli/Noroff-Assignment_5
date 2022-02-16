@@ -26,15 +26,29 @@ public class Player extends Character {
         Weapon weapon =  this.getEquipment().getWeapon();
         double weaponDamage = (weapon.getDamage() * weapon.getSpeed());
         double statModifier = 0;
-        Attributes playerAttributes = getStats().getTotalAttributes();
+        Attributes calculatedAttr = calculateAttributes();
         switch (getRole()) {
-            case Deprived -> statModifier = (playerAttributes.getStrength() + playerAttributes.getDexterity()) / 1.5;
-            case Mage -> statModifier = playerAttributes.getIntelligence();
-            case Rogue, Ranger -> statModifier = playerAttributes.getDexterity();
-            case Warrior -> statModifier = playerAttributes.getStrength();
+            case Deprived -> statModifier = (calculatedAttr.getStrength() + calculatedAttr.getDexterity()) / 1.5;
+            case Mage -> statModifier = calculatedAttr.getIntelligence();
+            case Rogue, Ranger -> statModifier = calculatedAttr.getDexterity();
+            case Warrior -> statModifier = calculatedAttr.getStrength();
         }
 
         return weaponDamage + (weaponDamage * (statModifier / 100));
+    }
+
+    private Attributes calculateAttributes() {
+        Attributes base = getStats().getTotalAttributes();
+        Attributes head = getEquipment().getHead().getAttributes();
+        Attributes body = getEquipment().getBody().getAttributes();
+        Attributes legs = getEquipment().getLegs().getAttributes();
+
+        return new Attributes(
+                base.getStrength() + head.getStrength() + body.getStrength() + legs.getStrength(),
+                base.getDexterity() + head.getDexterity() + body.getDexterity() + legs.getDexterity(),
+                base.getIntelligence() + head.getIntelligence() + body.getIntelligence() + legs.getIntelligence(),
+                base.getResilience() + head.getResilience() + body.getResilience() + legs.getResilience()
+        );
     }
 
     private static void setInstance(Player instance) {
