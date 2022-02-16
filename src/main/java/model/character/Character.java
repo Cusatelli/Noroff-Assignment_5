@@ -95,8 +95,8 @@ public abstract class Character {
         return this.getHealth() <= 0;
     }
 
-    public void levelUp(int experience) { // TODO return boolean if levelup or not
-        this.getStats().levelUp(experience);
+    public boolean levelUp(int experience) { // TODO return boolean if levelup or not
+        return this.getStats().levelUp(experience);
     }
 
     @Override
