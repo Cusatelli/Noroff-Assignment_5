@@ -52,7 +52,11 @@ public abstract class Character {
     }
 
     public void replenishHealth(int heal) {
-        this.setHealth(this.getHealth() + heal);
+        if(this.stats.getCurrentHealth() + heal <= this.stats.getMaxHealth()) {
+            this.stats.setCurrentHealth(this.stats.getCurrentHealth() + heal);
+            return;
+        }
+        this.stats.setCurrentHealth(this.stats.getMaxHealth());
     }
 
     public int getHealth() {
